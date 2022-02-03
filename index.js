@@ -2,13 +2,13 @@
 const axios = require("axios");
 const express = require("express");
 const CommitModel = require("./models/commitModel");
-const {sortedFiles} = require("./helpers");
-const cors = require('cors')
+const { sortedFiles } = require("./helpers");
+const cors = require("cors");
 require("./connectToDB");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors())
+app.use(cors());
 
 app.get("/commits/new/:sha", async (req, res) => {
   try {
@@ -42,7 +42,7 @@ app.get("/commits/new/:sha", async (req, res) => {
 app.get("/commits/all", async (req, res) => {
   try {
     const allCommits = await CommitModel.find();
-    return res.send(allCommits);
+    res.json({ commits: allCommits });
   } catch (e) {
     console.log(e);
     return res.send("error");
