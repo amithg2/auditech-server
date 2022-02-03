@@ -34,8 +34,10 @@ app.get("/commits/new/:sha", async (req, res) => {
     commit.filesRemoved = files.filesRemoved;
     const newCommit = new CommitModel(commit);
     newCommit.save();
+    res.status(200)
   } catch (e) {
     console.log(e);
+    res.status(500)
   }
 });
 
