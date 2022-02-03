@@ -3,11 +3,12 @@ const axios = require("axios");
 const express = require("express");
 const CommitModel = require("./models/commitModel");
 const {sortedFiles} = require("./helpers");
-
+const cors = require('cors')
 require("./connectToDB");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(cors())
 
 app.get("/commits/new/:sha", async (req, res) => {
   try {
